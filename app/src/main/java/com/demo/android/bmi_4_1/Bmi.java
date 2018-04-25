@@ -16,22 +16,21 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     TextView result;
     TextView suggest;
     Button submit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_bmi );
         findViews();
         setListeners();
     }
     private void findViews(){
+
         submit =findViewById(R.id.submit);
         feild_height = findViewById(R.id.field_height);
         feild_weight = findViewById(R.id.field_weight);
         result = findViewById(R.id.result);
         suggest = findViewById(R.id.suggest);
-
-
     }
     protected void setListeners()
     {
@@ -39,8 +38,6 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void onClick(View v){
-
-
 
         double height = Double.parseDouble(feild_height.getText().toString())/100;
         double weight = Double.parseDouble(feild_height.getText().toString());
