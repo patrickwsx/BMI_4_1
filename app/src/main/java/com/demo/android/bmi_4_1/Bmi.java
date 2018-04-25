@@ -11,36 +11,50 @@ import java.text.DecimalFormat;
 
 
 public class Bmi extends AppCompatActivity implements View.OnClickListener {
+    EditText feild_height;
+    EditText feild_weight;
+    TextView result;
+    TextView suggest;
+    Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bmi);
-        Button submit = findViewById(R.id.submit);
-        submit.setOnClickListener(this);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_bmi );
+        findViews();
+        setListeners();
+    }
+    private void findViews(){
+        submit =findViewById(R.id.submit);
+        feild_height = findViewById(R.id.field_height);
+        feild_weight = findViewById(R.id.field_weight);
+        result = findViewById(R.id.result);
+        suggest = findViewById(R.id.suggest);
+
+
+    }
+    protected void setListeners()
+    {
+        submit.setOnClickListener(this );
     }
 
-    @Override
-    public void onClick(View v) {
+    public void onClick(View v){
+
+
+        String height = feild_height.getText().toString();
+        String weight = feild_height.getText().toString();
+        double h = Double.parseDouble(height)/100;
+        double w = Double.parseDouble(weight);
+        double BMI= w/(h*h);
         DecimalFormat df = new DecimalFormat("0.00");
+        result.setText("你的BMI值="+df.format(BMI));
 
-        EditText field_height = findViewById(R.id.field_height);
-        EditText field_weight = findViewById(R.id.field_weight);
-
-        double height = Double.parseDouble(field_height.getText().toString()) / 100;
-        double weight = Double.parseDouble(field_weight.getText().toString());
-        double BMI = weight / (height * height);
-
-        TextView result = findViewById(R.id.result);
-        result.setText("你的BMI值 = " + df.format(BMI));
-        TextView suggest = findViewById(R.id.suggest);
-
-        if (BMI > 25)
-            suggest.setText(R.string.advice_heavy);
-        else if (BMI < 20)
-            suggest.setText(R.string.advice_light);
+        if(BMI>25)
+            suggest.setText("體重超標");
+        else if(BMI<20)
+            suggest.setText("體重過瘦");
         else
-            suggest.setText(R.string.advice_average);
+            suggest.setText("標準範圍");
     }
 }
 
