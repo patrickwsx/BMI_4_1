@@ -41,11 +41,10 @@ public class Bmi extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v){
 
 
-        String height = feild_height.getText().toString();
-        String weight = feild_height.getText().toString();
-        double h = Double.parseDouble(height)/100;
-        double w = Double.parseDouble(weight);
-        double BMI= w/(h*h);
+
+        double height = Double.parseDouble(feild_height.getText().toString())/100;
+        double weight = Double.parseDouble(feild_height.getText().toString());
+        double BMI= weight/( height* height);
         DecimalFormat df = new DecimalFormat("0.00");
         result.setText("你的BMI值="+df.format(BMI));
 
